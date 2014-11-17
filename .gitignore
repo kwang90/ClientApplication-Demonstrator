@@ -1,0 +1,36 @@
+*.class
+target/
+Servers/
+*.jar
+*.ear
+hs_err_pid*
+*.pydevproject
+.metadata
+.classpath
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+RemoteSystemsTempFiles/
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# CDT-specific
+.cproject
+
+# PDT-specific
+.buildpath
+
+# sbteclipse plugin
+.target
+
+# TeXlipse plugin
+.texlipse
