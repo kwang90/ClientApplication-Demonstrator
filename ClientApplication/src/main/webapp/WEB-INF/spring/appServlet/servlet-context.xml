@@ -8,12 +8,9 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing 
-		infrastructure -->
-	<context:annotation-config />
-
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
+
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
@@ -28,6 +25,4 @@
 	</beans:bean>
 
 	<context:component-scan base-package="com.siemens.demonstrator.client" />
-
-	<context:annotation-config />
 </beans:beans>
