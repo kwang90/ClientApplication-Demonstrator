@@ -13,18 +13,16 @@ public class FrontController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(Locale locale, Model model) {
-		System.out.println("home");
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("navbar-transparent");
-		mv.addObject("name", "ahmed");
+		mv.setViewName("landing-page");
+		mv.addObject("loginNotification", "hidden");
 		return mv;
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
 	public ModelAndView loginPage(Locale locale, Model model) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("index");
-		mv.addObject("name", "ahmed");
+		mv.setViewName("dashboard");
 		return mv;
 	}
 
