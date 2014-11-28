@@ -15,7 +15,7 @@ public class FrontController {
 	public ModelAndView home(Locale locale, Model model) {
 		System.out.println("home");
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("index");
+		mv.setViewName("navbar-transparent");
 		mv.addObject("name", "ahmed");
 		return mv;
 	}

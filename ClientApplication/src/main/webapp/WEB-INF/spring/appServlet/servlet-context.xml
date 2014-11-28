@@ -16,6 +16,12 @@
 		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 
+	<resources mapping="/bootstrap3/**" location="/resources/bootstrap3/" />
+
+	<resources mapping="/assets/**" location="/resources/assets/" />
+
+	<resources mapping="/jquery/*" location="/resources/jquery/" />
+
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
 	<beans:bean
