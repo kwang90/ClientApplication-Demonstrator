@@ -5,7 +5,7 @@
 <!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Siemens AG | ICeWater Demonstrator</title>
+<title>ICeWater Demonstrator | Welcome</title>
 
 <!-- Mobile Meta -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -247,9 +247,8 @@
 						<div class="media-body">
 							<h4 class="media-heading">Embedded Services</h4>
 							<p>ICeWater system was fully developed and deployed over
-								embedded devices. The Smart Gateway Service is deployed on a
-								Raspberry Pi while the SWE services are deployed on a
-								BeagleBoard.</p>
+								embedded devices. The SWGs is deployed on a Raspberry Pi while
+								the SWE services are deployed on a BeagleBoard.</p>
 						</div>
 					</div>
 				</div>
@@ -264,11 +263,11 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h1 class="text-center">Smart Devices are Approaching, We Are
-						Getting Ready!</h1>
+					<h1 class="text-center">Smart Devices are Approaching, And We
+						Are Getting Ready!</h1>
 				</div>
 				<div class="text-center">
-					<form action="/client/dashboard" method="post" >
+					<form action="/client/dashboard.html" method="post">
 						<button class="btn btn-primary btn-lg">Start Live Demo!</button>
 					</form>
 				</div>

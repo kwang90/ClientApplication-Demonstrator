@@ -12,13 +12,19 @@ import org.springframework.web.servlet.ModelAndView;
 public class FrontController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView home(Locale locale, Model model) {
+	public String home() {
+		return "redirect:index.html";
+	}
+
+	@RequestMapping(value = "/index.html", method = RequestMethod.GET)
+	public ModelAndView index(Locale locale, Model model) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("index");
 		return mv;
 	}
 
-	@RequestMapping(value = "/dashboard", method = RequestMethod.POST)
+	@RequestMapping(value = "/dashboard.html", method = { RequestMethod.GET,
+			RequestMethod.POST })
 	public ModelAndView dashboardPage(Locale locale, Model model) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("dashboard");

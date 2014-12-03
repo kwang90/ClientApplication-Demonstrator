@@ -16,19 +16,30 @@
 		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 
+	<resources mapping="/assets/**" location="/resources/assets/" />
+
+
 	<resources mapping="/bootstrap/**" location="/resources/bootstrap/" />
 
 	<resources mapping="/css/*" location="/resources/css/" />
 
+	<resources mapping="/css/**" location="/resources/css/" />
+
 	<resources mapping="/fonts/font-awesome/**" location="/resources/fonts/font-awesome/" />
+
+	<resources mapping="/fonts/*" location="/resources/fonts/" />
 
 	<resources mapping="/images/*" location="/resources/images/" />
 
 	<resources mapping="/js/*" location="/resources/js/" />
 
+	<resources mapping="/js/plugins/**" location="/resources/js/plugins/" />
+
 	<resources mapping="/plugins/*" location="/resources/plugins/" />
 
 	<resources mapping="/plugins/**" location="/resources/plugins/" />
+
+	<resources mapping="/less/*" location="/resources/less/" />
 
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
