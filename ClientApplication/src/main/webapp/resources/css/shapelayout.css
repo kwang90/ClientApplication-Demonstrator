@@ -1,0 +1,35 @@
+.my-icon {
+	position: relative;
+}
+
+.my-icon>i {
+	position: relative;
+	display: inline-block;
+	border: 50px solid #428bca;
+	left: 40%;
+	top: 0px
+}
+
+.my-icon>i+i {
+	position: relative;
+	display: inline-block;
+	border: 50px solid #428bca;
+	left: 40%;
+	bottom: 0px
+}
+
+.my-icon>i+i+i {
+	position: relative;
+	display: inline-block;
+	border: 50px solid #428bca;
+	left: 40%;
+	top: 0px
+}
+
+.my-icon>i+i+i+i {
+	position: relative;
+	display: inline-block;
+	border: 50px solid #428bca;
+	left: 40%;
+	top: 0px
+}

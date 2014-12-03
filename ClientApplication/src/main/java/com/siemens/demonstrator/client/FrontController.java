@@ -31,6 +31,13 @@ public class FrontController {
 		return mv;
 	}
 
+	@RequestMapping(value = "/statistics.html", method = RequestMethod.GET)
+	public ModelAndView statisticsPage(Locale locale, Model model) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("statistics");
+		return mv;
+	}
+
 	/*
 	 * @RequestMapping(value = "/home", method = RequestMethod.POST) public
 	 * String login(@Validated User user, Model model) {
