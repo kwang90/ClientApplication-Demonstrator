@@ -25,6 +25,10 @@
 <!-- Layout shapes CSS -->
 <link href="css/shapelayout.css" rel="stylesheet">
 
+<link href="css/get-shit-done.css" rel="stylesheet" />
+
+<link href="css/demo.css" rel="stylesheet" />
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -78,12 +82,40 @@
 					</div>
 					<!-- /.panel-heading -->
 					<div class="panel-body">
-						<div class="row">
+						<div id="container">
+							<div id="navi">
+								<div class="sewage" onclick="onProcessClicked('Sewage')">Sewage</div>
+								<div class="utility" onclick="onProcessClicked('Utility')">Utility</div>
+								<div class="house1" onclick="onProcessClicked('House 1')">House
+									1</div>
+								<div class="house2" onclick="onProcessClicked('House 2')">House
+									2</div>
+							</div>
+							<div id="infoi">
+								<hr class="utilityLine"></hr>
+							</div>
+							<div id="infoi2">
+								<hr class="house1Line"></hr>
+							</div>
+							<div id="infoi3">
+								<hr class="house2Line"></hr>
+							</div>
+							<div id="infoi4">
+								<hr class="connectingLine"></hr>
+							</div>
+							<div id="infoi5">
+								<hr class="sewageLine"></hr>
+							</div>
+							<div id="infoi6">
+								<hr class="house11Line"></hr>
+							</div>
+							<div id="infoi7">
+								<hr class="house22Line"></hr>
+							</div>
+							<div id="infoi8">
+								<hr class="connecting2Line"></hr>
+							</div>
 
-							<i
-								style="position: relative; display: inline-block; border: 50px solid #428bca; left: 40%; top: 0px"></i>
-							<i
-								style="position: relative; display: inline-block; border: 50px solid #428bca; left: 40%; top: 0px"></i>
 						</div>
 					</div>
 					<!-- /.panel-body -->
@@ -93,13 +125,6 @@
 		</div>
 		<!-- /.row -->
 
-		<!-- <span class="text-center"
-							style="display: inline-block; width: 300px; height: 300px"><span
-							style="position: relative; display: inline-block; width: 300px; height: 300px"><i
-								style="position: absolute; display: inline-block; width: 0; height: 0; line-height: 0; border: 51.315789473684205px solid #428bca; border-bottom: 51.315789473684205px solid #428bca; left: 189.4736842105263px; top: 0px"></i><i
-								style="position: absolute; display: inline-block; width: 0; height: 0; line-height: 0; border: 51.315789473684205px solid #428bca; border-bottom: 51.315789473684205px solid #428bca; left: 189.4736842105263px; top: 205.26315789473682px"></i><i
-								style="position: absolute; display: inline-block; width: 0; height: 0; line-height: 0; border: 51.315789473684205px solid #428bca; border-bottom: 51.315789473684205px solid #428bca; left: 386.84210526315786px; top: 102.63157894736841px"></i><i
-								style="position: absolute; display: inline-block; width: 0; height: 0; line-height: 0; border: 51.315789473684205px solid #428bca; border-bottom: 51.315789473684205px solid #428bca; left: 0px; top: 102.63157894736841px"></i></span></span> -->
 		<div class="row">
 			<div class="col-lg-6">
 				<div class="panel panel-info">
@@ -107,7 +132,12 @@
 						<i class="fa fa-cogs fa-fw"></i> Control Panel
 					</div>
 					<!-- /.panel-heading -->
-					<div class="panel-body"></div>
+					<div class="panel-body well">
+						<div>
+							<h4 id="panelPropertyId"></h4>
+						</div>
+						<div id="panelDevicesList" class="list-group"></div>
+					</div>
 					<!-- /.panel-body -->
 				</div>
 			</div>
@@ -159,6 +189,18 @@
 
 	<!-- Custom Theme JavaScript -->
 	<script src="js/sb-admin-2.js"></script>
+
+	<script src="js/jquery-1.10.2.js" type="text/javascript"></script>
+	<script src="js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+
+	<script src="js/gsdk-checkbox.js"></script>
+	<script src="js/gsdk-radio.js"></script>
+	<script src="js/gsdk-bootstrapswitch.js"></script>
+	<script src="js/get-shit-done.js"></script>
+
+	<!-- Custom Script -->
+	<script src="js/custom.js"></script>
+
 </body>
 
 </html>
