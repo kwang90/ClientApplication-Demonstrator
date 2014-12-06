@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
@@ -45,12 +46,24 @@ public class FrontController {
 	}
 
 	@RequestMapping(value = "/task", method = RequestMethod.POST)
-	public void GET(Locale locale, Model model) {
-		System.out.println("Tasking request received");
-		/*
-		 * ModelAndView mv = new ModelAndView(); mv.setViewName("statistics");
-		 * return mv;
-		 */
+	public @ResponseBody String submitTask(
+			@RequestParam(value = "procedure") String procedure,
+			@RequestParam(value = "values") String values) {
+		System.out.println("Tasking request received:" + procedure + ":"
+				+ values);
+
+		// SPSProxy spsProxy = new SPSProxy();
+		// return spsProxy.submitTask(procedure, values);
+		return "success";
+	}
+
+	@RequestMapping(value = "/sensor", method = RequestMethod.POST)
+	public @ResponseBody String getSensorValue(
+			@RequestParam(value = "procedure") String procedure) {
+		System.out.println("SOS Observation request received:" + procedure);
+
+		// FIXME add SOSProxy method to getObservation
+		return "success";
 	}
 
 	@RequestMapping(value = "/statistics.html", method = RequestMethod.GET)
@@ -64,10 +77,34 @@ public class FrontController {
 	@ResponseStatus(value = HttpStatus.OK)
 	public @ResponseBody String getSensorsByProcessId(
 			@PathVariable("processId") String processId) throws JSONException {
-		// FIXME Fetch sensors for the input processId from the registry, cast
-		// them to List of PhysicalComponent, then send a list of these sensors
-		// to the javascript
 		System.out.println("Sensors for processId:" + processId);
+		/*
+		 * RegistryProxy registryProxy = new RegistryProxy(); try {
+		 * PhysicalComponentList physicalComponentList = registryProxy
+		 * .getPhysicalComponentListByProcessId(processId); JSONObject mainObj =
+		 * new JSONObject(); JSONArray sensorsList = new JSONArray(); for
+		 * (PhysicalComponent physicalComponent : physicalComponentList
+		 * .getList()) { if (physicalComponent.getParameters() != null) for
+		 * (Parameter parameter : physicalComponent
+		 * .getParameters().getParametersList()) { JSONObject device = new
+		 * JSONObject(); device.put("logicalId", physicalComponent
+		 * .getIdentifier().getIdentifier()); device.put("type", "actuator"); if
+		 * (parameter.getParameterType() instanceof Boolean)
+		 * device.put("parameterType", "Boolean"); else
+		 * device.put("parameterType", "Quantity"); device.put("parameterName",
+		 * parameter.getName()); device.put("value", "NA");
+		 * sensorsList.put(device); } if (physicalComponent.getOutputs() !=
+		 * null) for (Output output : physicalComponent.getOutputs()
+		 * .getOutputsList()) { JSONObject device = new JSONObject();
+		 * device.put("logicalId", physicalComponent
+		 * .getIdentifier().getIdentifier()); device.put("type", "sensor");
+		 * device.put("parameterType", "Quantity"); device.put("parameterName",
+		 * output.getName()); device.put("value", "NA");
+		 * sensorsList.put(device); } } mainObj.put("devices", sensorsList);
+		 * return mainObj.toString(); } catch (JAXBException e) { // TODO
+		 * Auto-generated catch block e.printStackTrace(); }
+		 */
+
 		JSONObject mainObj = new JSONObject();
 		JSONArray sensorsList = new JSONArray();
 
@@ -106,7 +143,7 @@ public class FrontController {
 			sensorsList.put(pump);
 			sensorsList.put(sensor);
 
-		} else if (processId.equalsIgnoreCase("Utility")) {
+		} else if (processId.equalsIgnoreCase("Fresh")) {
 			JSONObject pump = new JSONObject();
 			pump.put("logicalId", "100");
 			pump.put("type", "actuator");
@@ -130,10 +167,4 @@ public class FrontController {
 		System.out.println(mainObj.toString());
 		return mainObj.toString();
 	}
-	/*
-	 * @RequestMapping(value = "/home", method = RequestMethod.POST) public
-	 * String login(@Validated User user, Model model) {
-	 * model.addAttribute("userName", user.getUserName()); return "user"; }
-	 */
-
 }

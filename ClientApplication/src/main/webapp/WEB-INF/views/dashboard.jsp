@@ -75,7 +75,7 @@
 	<div id="page-wrapper">
 		<br>
 		<div class="row">
-			<div class="col-lg-12">
+			<div class="col-lg-6">
 				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<i class="fa fa-image fa-fw"></i> Control Layout
@@ -84,15 +84,12 @@
 					<div class="panel-body">
 						<div id="container">
 							<div id="navi">
-								<div class="sewage" onclick="onProcessClicked('Sewage')">Sewage</div>
-								<div class="utility" onclick="onProcessClicked('Utility')">Utility</div>
+								<div class="sewage" onclick="onProcessClicked('Sewage')">Waste</div>
+								<div class="utility" onclick="onProcessClicked('Fresh')">Fresh</div>
 								<div class="house1" onclick="onProcessClicked('House 1')">House
 									1</div>
 								<div class="house2" onclick="onProcessClicked('House 2')">House
 									2</div>
-							</div>
-							<div id="infoi">
-								<hr class="utilityLine"></hr>
 							</div>
 							<div id="infoi2">
 								<hr class="house1Line"></hr>
@@ -122,57 +119,57 @@
 				</div>
 			</div>
 			<!-- /.col-lg-12 -->
+
+			<div class="col-lg-6">
+				<div class="row">
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<i class="fa fa-cogs fa-fw"></i> Control Panel
+						</div>
+						<!-- /.panel-heading -->
+						<div class="panel-body well">
+							<div>
+								<h4 id="panelPropertyId"></h4>
+							</div>
+							<div id="panelDevicesList" class="list-group"></div>
+						</div>
+						<!-- /.panel-body -->
+					</div>
+				</div>
+				<div class="row">
+					<div class="panel panel-red">
+						<div class="panel-heading">
+							<i class="fa fa-bell fa-fw"></i> Notifications Panel
+						</div>
+						<!-- /.panel-heading -->
+						<div class="panel-body">
+							<div class="list-group">
+								<a href="#" class="list-group-item"> <i
+									class="fa fa-bell fa-fw"></i> New Sensor: Sensor 1 inserted <span
+									class="pull-right text-muted small"><em>4 minutes
+											ago</em> </span>
+								</a> <a href="#" class="list-group-item"> <i
+									class="fa fa-bell fa-fw"></i> Flow 1 reached threshold value <span
+									class="pull-right text-muted small"><em>12 minutes
+											ago</em> </span>
+								</a><a href="#" class="list-group-item"> <i
+									class="fa fa-bell fa-fw"></i> Pump 1 is on<span
+									class="pull-right text-muted small"><em>12 minutes
+											ago</em> </span>
+								</a><a href="#" class="list-group-item"> <i
+									class="fa fa-bell fa-fw"></i> Level 1<span
+									class="pull-right text-muted small"><em>12 minutes
+											ago</em> </span>
+								</a>
+							</div>
+							<!-- /.list-group -->
+						</div>
+						<!-- /.panel-body -->
+					</div>
+				</div>
+			</div>
 		</div>
 		<!-- /.row -->
-
-		<div class="row">
-			<div class="col-lg-6">
-				<div class="panel panel-info">
-					<div class="panel-heading">
-						<i class="fa fa-cogs fa-fw"></i> Control Panel
-					</div>
-					<!-- /.panel-heading -->
-					<div class="panel-body well">
-						<div>
-							<h4 id="panelPropertyId"></h4>
-						</div>
-						<div id="panelDevicesList" class="list-group"></div>
-					</div>
-					<!-- /.panel-body -->
-				</div>
-			</div>
-			<div class="col-lg-6">
-				<div class="panel panel-red">
-					<div class="panel-heading">
-						<i class="fa fa-bell fa-fw"></i> Notifications Panel
-					</div>
-					<!-- /.panel-heading -->
-					<div class="panel-body">
-						<div class="list-group">
-							<a href="#" class="list-group-item"> <i
-								class="fa fa-bell fa-fw"></i> New Sensor: Sensor 1 inserted <span
-								class="pull-right text-muted small"><em>4 minutes
-										ago</em> </span>
-							</a> <a href="#" class="list-group-item"> <i
-								class="fa fa-bell fa-fw"></i> Flow 1 reached threshold value <span
-								class="pull-right text-muted small"><em>12 minutes
-										ago</em> </span>
-							</a><a href="#" class="list-group-item"> <i
-								class="fa fa-bell fa-fw"></i> Pump 1 is on<span
-								class="pull-right text-muted small"><em>12 minutes
-										ago</em> </span>
-							</a><a href="#" class="list-group-item"> <i
-								class="fa fa-bell fa-fw"></i> Level 1<span
-								class="pull-right text-muted small"><em>12 minutes
-										ago</em> </span>
-							</a>
-						</div>
-						<!-- /.list-group -->
-					</div>
-					<!-- /.panel-body -->
-				</div>
-			</div>
-		</div>
 		<!-- /#page-wrapper -->
 
 	</div>

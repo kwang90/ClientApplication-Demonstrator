@@ -18,7 +18,7 @@ import com.siemens.demonstrator.client.proxy.RegistryProxy;
 /**
  * This bean is responsible for session initialization, fetching services list
  */
-@PropertySource("classpath:gateway.properties")
+@PropertySource("classpath:client.properties")
 public class ServerStartup {
 	private final static Logger logger = Logger.getLogger(ServerStartup.class);
 	private static final String PROPERTY_NAME_REGISTRY_IP = "registry.ip";
@@ -29,8 +29,8 @@ public class ServerStartup {
 
 	@PostConstruct
 	private void initiateData() {
-		initializeSession();
-		fetchServicesList();
+	//	initializeSession();
+		// fetchServicesList();
 	}
 
 	/**

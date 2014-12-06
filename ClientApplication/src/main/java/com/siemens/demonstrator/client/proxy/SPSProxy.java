@@ -44,13 +44,13 @@ public class SPSProxy extends ServiceProxy {
 	 * @throws ParserConfigurationException
 	 * @throws TransformerException
 	 */
-	public void submitTask(String procedure, String values)
+	public String submitTask(String procedure, String values)
 			throws JAXBException, TransformerException,
 			ParserConfigurationException, SAXException, IOException {
 		this.contextPath = RestURIConstants.SPS_UPDATE_TASK_STATUS;
 		Translator translator = new Translator();
 		String taskingRequest = translator.getSPSTaskingRequest(procedure,
 				values);
-		this.doPost(taskingRequest);
+		return this.doPost(taskingRequest);
 	}
 }

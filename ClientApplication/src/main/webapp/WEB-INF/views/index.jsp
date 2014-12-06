@@ -156,18 +156,21 @@
 			<div class="row">
 				<div class="col-sm-6">
 					<div class="media">
-						<div class="media-body text-right">
+						<div class="media-left">
+							<i class="fa fa-play"></i>
+						</div>
+						<div class="media-body">
 							<h4 class="media-heading">Plug and Play</h4>
 							<p>ICeWater system supports automatic device plug and play.
 								Devices range from normal measurement sensors to complicated
 								actuators. Thanks to our Smart Gateway Service (SGWs)!</p>
 						</div>
-						<div class="media-right">
-							<i class="fa fa-play"></i>
-						</div>
 					</div>
 					<div class="media">
-						<div class="media-body text-right">
+						<div class="media-left">
+							<i class="fa fa-check"></i>
+						</div>
+						<div class="media-body">
 							<h4 class="media-heading">Sensor Web Integration</h4>
 							<p>
 								ICeWater system utilizes the <a target="_blank"
@@ -177,30 +180,27 @@
 								Service (SPS) and Sensor Event Service (SES).
 							</p>
 						</div>
-						<div class="media-right">
-							<i class="fa fa-check"></i>
-						</div>
 					</div>
 					<div class="media">
-						<div class="media-body text-right">
+						<div class="media-left">
+							<i class="fa fa-desktop"></i>
+						</div>
+						<div class="media-body">
 							<h4 class="media-heading">Real-time Monitoring and Tasking</h4>
 							<p>ICeWater system provides real-time monitoring and tasking
 								for devices. Using the World Wide Web, control all your devices
 								from anywhere using a click of a button!</p>
 						</div>
-						<div class="media-right">
-							<i class="fa fa-desktop"></i>
-						</div>
 					</div>
 					<div class="media">
-						<div class="media-body text-right">
+						<div class="media-left">
+							<i class="fa fa-key"></i>
+						</div>
+						<div class="media-body">
 							<h4 class="media-heading">Secured Tasking Access</h4>
 							<p>ICeWater system provides secured access to tasking
 								resources using the OAuth 2.0 protocol. Don't worry, nobody can
 								ever sneak into your system and change its state!</p>
-						</div>
-						<div class="media-right">
-							<i class="fa fa-key"></i>
 						</div>
 					</div>
 				</div>

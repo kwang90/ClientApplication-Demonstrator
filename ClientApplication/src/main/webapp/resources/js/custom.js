@@ -16,7 +16,7 @@ var deviceListSpanHTML = "<span class=\"pull-right text-muted small\">$PARAMETER
 var actuatorListHTML = "<input type=\"checkbox\" onchange=\"onParameterChanged(this,'$INDEX')\" $IS_CHECKED data-toggle=\"switch\" class=\"ct-info\"/>";
 var actuatorSelectionListHTML = "<div class=\"form-group\"><select class=\"form-control\" onchange=\"onParameterSelected(this,'$INDEX')\"> <option>1</option> <option>2</option> <option>4</option> </select></div>";
 var actuatorIsCheckedHTML = "checked";
-var sensorListHTML = "<p class=\"text-primary\">$VALUE</p>";
+var sensorListHTML = "<p id=\"$SENSORID\" class=\"text-primary\">$VALUE</p>";
 var listGroupItemPrefixHTML = "<a class=\"list-group-item\">";
 var listGroupItemSuffixHTML = "</a>";
 var panelListId = $('#panelDevicesList');
@@ -25,6 +25,9 @@ var panelListId = $('#panelDevicesList');
  * Jquery Constants
  */
 var devicesList = "";
+var sosInterval = "";
+var sesInterval = "";
+
 function onProcessClicked(processId) {
 	document.getElementById("panelPropertyId").innerHTML = processTagIconHTML
 			+ "  " + processId;
@@ -55,8 +58,9 @@ function onProcessClicked(processId) {
 						parameterHTML = listGroupItemPrefixHTML + iconHTML
 								+ spanHTML + listGroupItemSuffixHTML;
 					} else if (item.type === "sensor") {
-						var sensorHTML = sensorListHTML.replace("$VALUE",
-								item.value);
+						var sensorHTML = sensorListHTML.replace("$SENSORID",
+								item.logicalId + "_" + item.parameterName)
+								.replace("$VALUE", item.value);
 						var spanHTML = deviceListSpanHTML.replace(
 								"$PARAMETER_TYPE", sensorHTML);
 						parameterHTML = listGroupItemPrefixHTML + iconHTML
@@ -69,14 +73,42 @@ function onProcessClicked(processId) {
 	$.getScript("/client/js/gsdk-checkbox.js");
 	$.getScript("/client/js/gsdk-bootstrapswitch.js");
 	$.getScript("/client/js/get-shit-done.js");
+
+	clearInterval(sosInterval);
+	clearInterval(sesInterval);
+
+	sosInterval = setInterval(function() {
+		pollSOSValues(processId);
+	}, 3000);
+	sesInterval = setInterval(function() {
+		pollSESValues(processId);
+	}, 3000);
+
+}
+
+function pollSOSValues(processId) {
+	console.log("polling sos values for processId:" + processId);
+	$(devicesList).each(
+			function(index, item) {
+				if (item.type === "sensor")
+					$.post("/client/sensor?procedure=" + item.logicalId,
+							function(data) {
+								document.getElementById(item.logicalId + "_"
+										+ item.parameterName).innerHTML = data;
+							});
+			});
+}
+
+function pollSESValues(processId) {
+	console.log("polling ses values for processId:" + processId);
 }
 
 function onParameterChanged(element, index) {
 	console.log(devicesList[index].parameterName + " change for sensor id:"
 			+ devicesList[index].logicalId + " has changed to:"
 			+ element.checked);
-	// FIXME Do the post Request here to post a tasking request to the SPS,
-	// given sensor ID and parameter Value
+	$.post("/client/task?procedure=" + devicesList[index].logicalId
+			+ "&values=" + element.checked);
 }
 
 function onParameterSelected(element, index) {
@@ -84,6 +116,6 @@ function onParameterSelected(element, index) {
 			.log(devicesList[index].parameterName + " selection for sensor id:"
 					+ devicesList[index].logicalId + " has changed to:"
 					+ element.value);
-	// FIXME Do the post Request here to post a tasking request to the SPS,
-	// given sensor ID and parameter Value
+	$.post("/client/task?procedure=" + devicesList[index].logicalId
+			+ "&values=" + element.value);
 }
