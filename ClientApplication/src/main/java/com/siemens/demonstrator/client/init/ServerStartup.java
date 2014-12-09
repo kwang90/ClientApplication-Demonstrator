@@ -21,15 +21,15 @@ import com.siemens.demonstrator.client.proxy.RegistryProxy;
 @PropertySource("classpath:client.properties")
 public class ServerStartup {
 	private final static Logger logger = Logger.getLogger(ServerStartup.class);
-	private static final String PROPERTY_NAME_REGISTRY_IP = "registry.ip";
-	private static final String PROPERTY_NAME_REGISTRY_PORT = "registry.port";
+	private static final String PROPERTY_NAME_REGISTRY_IP = "192.168.1.1";
+	private static final String PROPERTY_NAME_REGISTRY_PORT = "8095";
 
 	@Resource
 	private Environment env;
 
 	@PostConstruct
 	private void initiateData() {
-	//	initializeSession();
+		initializeSession();
 		// fetchServicesList();
 	}
 
@@ -38,11 +38,9 @@ public class ServerStartup {
 	 */
 	private void initializeSession() {
 		logger.info("PostConstruct: initializeSession");
-		Session.getInstance().setRegistryIP(
-				env.getRequiredProperty(PROPERTY_NAME_REGISTRY_IP));
+		Session.getInstance().setRegistryIP(PROPERTY_NAME_REGISTRY_IP);
 		Session.getInstance().setRegistryPort(
-				Integer.parseInt(env
-						.getRequiredProperty(PROPERTY_NAME_REGISTRY_PORT)));
+				Integer.parseInt(PROPERTY_NAME_REGISTRY_PORT));
 		/**
 		 * Uncomment this line to disable SensorMLParser debugging
 		 */

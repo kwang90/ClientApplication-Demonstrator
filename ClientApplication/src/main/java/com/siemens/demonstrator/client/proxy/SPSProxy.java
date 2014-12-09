@@ -19,7 +19,7 @@ import com.siemens.demonstrator.client.init.Session;
 import com.siemens.demonstrator.client.translator.Translator;
 
 /**
- * Responsible proxy for communication with the Registry
+ * Responsible proxy for communication with the SPS
  */
 public class SPSProxy extends ServiceProxy {
 
@@ -47,7 +47,7 @@ public class SPSProxy extends ServiceProxy {
 	public String submitTask(String procedure, String values)
 			throws JAXBException, TransformerException,
 			ParserConfigurationException, SAXException, IOException {
-		this.contextPath = RestURIConstants.SPS_UPDATE_TASK_STATUS;
+		this.contextPath = RestURIConstants.SPS_SUBMIT_TASK_STATUS;
 		Translator translator = new Translator();
 		String taskingRequest = translator.getSPSTaskingRequest(procedure,
 				values);

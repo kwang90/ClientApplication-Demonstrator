@@ -13,7 +13,6 @@ public class Session {
 
 	private static Session thisInstance;
 
-	private String gatewayId = null;
 	private String registryIP = null;
 	private int registryPort;
 	private ServiceList serviceList = null;
@@ -42,21 +41,6 @@ public class Session {
 	 */
 	public void setRegistryIP(String registryIP) {
 		this.registryIP = registryIP;
-	}
-
-	/**
-	 * @return the gatewayId
-	 */
-	public String getGatewayId() {
-		return gatewayId;
-	}
-
-	/**
-	 * @param gatewayId
-	 *            the gatewayId to set
-	 */
-	public void setGatewayId(String gatewayId) {
-		this.gatewayId = gatewayId;
 	}
 
 	/**

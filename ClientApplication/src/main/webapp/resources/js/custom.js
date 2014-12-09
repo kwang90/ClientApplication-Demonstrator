@@ -1,12 +1,3 @@
-/* Theme Name: Worthy - Free Powerful Theme by HtmlCoder
- * Author:HtmlCoder
- * Author URI:http://www.htmlcoder.me
- * Version:1.0.0
- * Created:November 2014
- * License: Creative Commons Attribution 3.0 License (https://creativecommons.org/licenses/by/3.0/)
- * File Description: Place here your custom scripts
- */
-
 /**
  * HTML Constants
  */
@@ -19,7 +10,10 @@ var actuatorIsCheckedHTML = "checked";
 var sensorListHTML = "<p id=\"$SENSORID\" class=\"text-primary\">$VALUE</p>";
 var listGroupItemPrefixHTML = "<a class=\"list-group-item\">";
 var listGroupItemSuffixHTML = "</a>";
+var notificationHTML = "<a class=\"list-group-item\"> <i class=\"fa fa-bell fa-fw\"></i>$NOTIFICATION_TEXT<span class=\"pull-right text-muted small\"><em>$NOTIFICATION_TIME</em></span></a>";
+
 var panelListId = $('#panelDevicesList');
+var notificationsListId = $('#notificationsList');
 
 /**
  * Jquery Constants
@@ -28,11 +22,17 @@ var devicesList = "";
 var sosInterval = "";
 var sesInterval = "";
 
+$(document).ready(function() {
+	sesInterval = setInterval(function() {
+		pollSESValues();
+	}, 5000);
+});
+
 function onProcessClicked(processId) {
 	document.getElementById("panelPropertyId").innerHTML = processTagIconHTML
 			+ "  " + processId;
 	panelListId.empty();
-	$.get("/client/process/" + processId + "/sensors", function(data) {
+	$.get("/client/processes/" + processId + "/sensors", function(data) {
 		devicesList = JSON.parse(data).devices;
 		$(devicesList).each(
 				function(index, item) {
@@ -75,15 +75,10 @@ function onProcessClicked(processId) {
 	$.getScript("/client/js/get-shit-done.js");
 
 	clearInterval(sosInterval);
-	clearInterval(sesInterval);
 
 	sosInterval = setInterval(function() {
 		pollSOSValues(processId);
-	}, 3000);
-	sesInterval = setInterval(function() {
-		pollSESValues(processId);
-	}, 3000);
-
+	}, 5000);
 }
 
 function pollSOSValues(processId) {
@@ -91,7 +86,7 @@ function pollSOSValues(processId) {
 	$(devicesList).each(
 			function(index, item) {
 				if (item.type === "sensor")
-					$.post("/client/sensor?procedure=" + item.logicalId,
+					$.get("/client/sensors/" + item.logicalId + "/value",
 							function(data) {
 								document.getElementById(item.logicalId + "_"
 										+ item.parameterName).innerHTML = data;
@@ -99,15 +94,27 @@ function pollSOSValues(processId) {
 			});
 }
 
-function pollSESValues(processId) {
-	console.log("polling ses values for processId:" + processId);
+function pollSESValues() {
+	console.log("polling ses values");
+	$.get(
+			"/client/notifications?page="
+					+ notificationsListId.children().length, function(data) {
+				var notificationsList = JSON.parse(data).notifications;
+				$(notificationsList).each(
+						function(index, item) {
+							var notification = notificationHTML.replace(
+									"$NOTIFICATION_TEXT", item.text).replace(
+									"$NOTIFICATION_TIME", item.time);
+							notificationsListId.append(notification);
+						});
+			});
 }
 
 function onParameterChanged(element, index) {
 	console.log(devicesList[index].parameterName + " change for sensor id:"
 			+ devicesList[index].logicalId + " has changed to:"
 			+ element.checked);
-	$.post("/client/task?procedure=" + devicesList[index].logicalId
+	$.post("/client/tasks?procedure=" + devicesList[index].logicalId
 			+ "&values=" + element.checked);
 }
 
@@ -116,6 +123,6 @@ function onParameterSelected(element, index) {
 			.log(devicesList[index].parameterName + " selection for sensor id:"
 					+ devicesList[index].logicalId + " has changed to:"
 					+ element.value);
-	$.post("/client/task?procedure=" + devicesList[index].logicalId
+	$.post("/client/tasks?procedure=" + devicesList[index].logicalId
 			+ "&values=" + element.value);
 }

@@ -86,9 +86,9 @@
 							<div id="navi">
 								<div class="sewage" onclick="onProcessClicked('Sewage')">Waste</div>
 								<div class="utility" onclick="onProcessClicked('Fresh')">Fresh</div>
-								<div class="house1" onclick="onProcessClicked('House 1')">House
+								<div class="house1" onclick="onProcessClicked('House_01')">House
 									1</div>
-								<div class="house2" onclick="onProcessClicked('House 2')">House
+								<div class="house2" onclick="onProcessClicked('House_02')">House
 									2</div>
 							</div>
 							<div id="infoi2">
@@ -143,7 +143,7 @@
 						</div>
 						<!-- /.panel-heading -->
 						<div class="panel-body">
-							<div class="list-group">
+							<div class="list-group" id="notificationsList">
 								<a href="#" class="list-group-item"> <i
 									class="fa fa-bell fa-fw"></i> New Sensor: Sensor 1 inserted <span
 									class="pull-right text-muted small"><em>4 minutes

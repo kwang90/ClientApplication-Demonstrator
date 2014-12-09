@@ -10,18 +10,17 @@ import java.util.Arrays;
 import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactoryConfigurationError;
 
 import org.springframework.http.MediaType;
 import org.xml.sax.SAXException;
 
 import com.siemens.demonstrator.client.init.Constant;
 import com.siemens.demonstrator.client.init.Session;
-import com.siemens.demonstrator.parser.main.SensorMLParser;
-import com.siemens.demonstrator.parser.model.PhysicalComponent;
+import com.siemens.demonstrator.omparser.main.OMParser;
+import com.siemens.demonstrator.omparser.model.ObservationCollection;
 
 /**
- * Responsible proxy for communication with the Registry
+ * Responsible proxy for communication with the SOS
  */
 public class SOSProxy extends ServiceProxy {
 
@@ -35,11 +34,46 @@ public class SOSProxy extends ServiceProxy {
 		headers.setContentType(MediaType.parseMediaType("application/gml+xml"));
 	}
 
-/*	public String insertSensorObservation(RestObservation sosObservation)
-			throws JAXBException {
-		this.contextPath = RestURIConstants.SOS_INSERT_OBSERVATION;
-		//OMParser omParser = new OMParser();
-		String xmlObject = omParser.parseObject(sosObservation);
-		return this.doPost(xmlObject);
+	/**
+	 * get SOS Observation
+	 * 
+	 * @param procedure
+	 *            the sensor procedure
+	 * @param temporalFilter
+	 *            time filter for the sos observations
+	 * @throws IOException
+	 * @throws SAXException
+	 * @throws ParserConfigurationException
+	 * @throws TransformerException
+	 */
+	public ObservationCollection getObservation(String procedure,
+			String temporalFilter) throws JAXBException, TransformerException,
+			ParserConfigurationException, SAXException, IOException {
+		this.contextPath = RestURIConstants.SOS_GET_OBSERVATION;
+		OMParser omParser = new OMParser();
+		ObservationCollection observations = omParser.parseXmlObservations(this
+				.doGet("?procedures=" + procedure + "&temporalFilter="
+						+ temporalFilter));
+		return observations;
 	}
-*/}
+
+	/**
+	 * get SOS Observation
+	 * 
+	 * @param procedure
+	 *            the sensor procedure
+	 * @throws IOException
+	 * @throws SAXException
+	 * @throws ParserConfigurationException
+	 * @throws TransformerException
+	 */
+	public ObservationCollection getObservation(String procedure)
+			throws JAXBException, TransformerException,
+			ParserConfigurationException, SAXException, IOException {
+		this.contextPath = RestURIConstants.SOS_GET_OBSERVATION;
+		OMParser omParser = new OMParser();
+		ObservationCollection observations = omParser.parseXmlObservations(this
+				.doGet("?procedures=" + procedure));
+		return observations;
+	}
+}

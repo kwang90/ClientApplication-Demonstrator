@@ -82,8 +82,14 @@
 			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/SensorMLParser.jar
 			</systemPath>
 		</dependency>
-
-
+		<dependency>
+			<groupId>SensorOMParser</groupId>
+			<artifactId>com.sensoromparser</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/SensorOMParser.jar
+			</systemPath>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>client</finalName>

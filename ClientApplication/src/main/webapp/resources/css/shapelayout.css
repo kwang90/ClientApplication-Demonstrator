@@ -90,7 +90,7 @@
 	width: 28%;
 	margin-left: 55%;
 	margin-top: 50px;
-	background-color: #008000;
+	background-color: #0000FF;
 	border-top-right-radius: 5px;
 }
 
@@ -100,7 +100,7 @@
 	width: 28%;
 	margin-right: 55%;
 	margin-top: 50px;
-	background-color: #FF0000;
+	background-color: #000000;
 	border-top-left-radius: 5px;
 }
 
@@ -110,7 +110,7 @@
 	width: 5px;
 	margin-left: 82.5%;
 	margin-top: 52px;
-	background-color: #008000;
+	background-color: #0000FF;
 }
 
 .connecting2Line {
@@ -119,14 +119,14 @@
 	width: 5px;
 	margin-right: 82.5%;
 	margin-top: 52px;
-	background-color: #FF0000;
+	background-color: #000000;
 }
 
 .house2Line {
 	border: none;
 	height: 3px;
 	width: 28%;
-	background-color: #008000;
+	background-color: #0000FF;
 	margin-left: 55%;
 	margin-top: 250px;
 	border-bottom-right-radius: 5px;
@@ -136,7 +136,7 @@
 	border: none;
 	height: 3px;
 	width: 28%;
-	background-color: #FF0000;
+	background-color: #000000;
 	margin-right: 55%;
 	margin-top: 250px;
 	border-bottom-left-radius: 5px;

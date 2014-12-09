@@ -44,11 +44,13 @@ public class RegistryProxy extends ServiceProxy {
 	}
 
 	/**
-	 * Fetches the {@link PhysicalComponentList} from the registry.
+	 * Fetches the {@link PhysicalComponentList} from the registry belonging to
+	 * one processId
 	 */
 	public PhysicalComponentList getPhysicalComponentListByProcessId(
 			String processId) throws JAXBException {
 		this.contextPath = RestURIConstants.REGISTRY_PHYSICAL_COMPONENT_LIST_PREFIX
+				+ "/"
 				+ processId
 				+ RestURIConstants.REGISTRY_PHYSICAL_COMPONENT_LIST_SUFFIX;
 		String xmlString = this.doGet("");
@@ -62,5 +64,17 @@ public class RegistryProxy extends ServiceProxy {
 		StringReader reader = new StringReader(xmlServiceList);
 		Session.getInstance().setServiceList(
 				(ServiceList) jaxbUnmarshaller.unmarshal(reader));
+	}
+
+	/**
+	 * Fetches the {@link PhysicalComponentList} from the registry.
+	 */
+	public PhysicalComponentList getPhysicalComponentList()
+			throws JAXBException {
+		this.contextPath = RestURIConstants.REGISTRY_PHYSICAL_COMPONENT_LIST_PREFIX
+				+ RestURIConstants.REGISTRY_PHYSICAL_COMPONENT_LIST_SUFFIX;
+		String xmlString = this.doGet("");
+		SensorMLParser sensormlParser = new SensorMLParser();
+		return sensormlParser.parsePhysicalComponentListXml(xmlString);
 	}
 }
