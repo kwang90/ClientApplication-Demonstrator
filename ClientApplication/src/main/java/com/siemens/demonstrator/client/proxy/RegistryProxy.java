@@ -71,8 +71,7 @@ public class RegistryProxy extends ServiceProxy {
 	 */
 	public PhysicalComponentList getPhysicalComponentList()
 			throws JAXBException {
-		this.contextPath = RestURIConstants.REGISTRY_PHYSICAL_COMPONENT_LIST_PREFIX
-				+ RestURIConstants.REGISTRY_PHYSICAL_COMPONENT_LIST_SUFFIX;
+		this.contextPath =  RestURIConstants.REGISTRY_PHYSICAL_COMPONENT_LIST;
 		String xmlString = this.doGet("");
 		SensorMLParser sensormlParser = new SensorMLParser();
 		return sensormlParser.parsePhysicalComponentList(xmlString);

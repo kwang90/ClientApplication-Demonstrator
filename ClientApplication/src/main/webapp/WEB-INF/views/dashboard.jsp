@@ -86,9 +86,8 @@
 							<div id="navi">
 								<div class="sewage" onclick="onProcessClicked('Sewage')">Waste</div>
 								<div class="utility" onclick="onProcessClicked('Fresh')">Fresh</div>
-								<div class="house1" onclick="onProcessClicked('House_00')">House_00</div>
-								<div class="house2" onclick="onProcessClicked('House_02')">House
-									2</div>
+								<div class="house1" onclick="onProcessClicked('House_00')">House 00</div>
+								<div class="house2" onclick="onProcessClicked('House_01')">House 01</div>
 							</div>
 							<div id="infoi2">
 								<hr class="house1Line"></hr>

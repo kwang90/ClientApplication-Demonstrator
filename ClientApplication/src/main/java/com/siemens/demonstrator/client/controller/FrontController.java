@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
-
 import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -53,7 +51,7 @@ public class FrontController {
 	}
 
 	@RequestMapping(value = "/index.html", method = RequestMethod.GET)
-	public ModelAndView index(Locale locale, Model model) {
+	public ModelAndView index(Model model) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("index");
 		return mv;
@@ -61,14 +59,14 @@ public class FrontController {
 
 	@RequestMapping(value = "/dashboard.html", method = { RequestMethod.GET,
 			RequestMethod.POST })
-	public ModelAndView dashboardPage(Locale locale, Model model) {
+	public ModelAndView dashboardPage(Model model) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("dashboard");
 		return mv;
 	}
 
 	@RequestMapping(value = "/statistics.html", method = RequestMethod.GET)
-	public ModelAndView statisticsPage(Locale locale, Model model) {
+	public ModelAndView statisticsPage(Model model) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("statistics");
 		return mv;
@@ -168,6 +166,8 @@ public class FrontController {
 
 			SOSProxy sosProxy = new SOSProxy();
 			String namespaces = "xmlns(om,http://www.opengis.net/om/2.0)";
+			System.out.println("Start date:" + dateformat.format(startDate));
+			System.out.println("Date date:" + dateformat.format(endDate));
 			String temporalFilter = "om:phenomenonTime,"
 					+ dateformat.format(startDate) + "/"
 					+ dateformat.format(endDate);

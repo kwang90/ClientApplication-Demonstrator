@@ -12,13 +12,15 @@ public class RestURIConstants {
 
 	public static final String REGISTRY_PHYSICAL_COMPONENT_LIST_SUFFIX = "/sensors";
 
+	public static final String REGISTRY_PHYSICAL_COMPONENT_LIST = "registry/sensor";
+
 	public static final String SOS_SERVICE_CONTEXT = "/52n-sos-webapp/sos/rest";
 
 	public static final String SOS_INSERT_SENSOR = "/52n-sos-webapp/sos/rest/sensors";
 
 	public static final String SOS_INSERT_OBSERVATION = "/52n-sos-webapp/sos/rest/observations";// {?procedures,temporalFilter,spatialFilter,responseFormat}
 
-	public static final String SOS_GET_OBSERVATION = "/52n-sos-webapp/sos/rest/observations?";;
+	public static final String SOS_GET_OBSERVATION = "/52n-sos-webapp/sos/rest/observations";
 
 	public static final String SPS_DOWNLOAD_LINK_PREFIX = "/sps/sml/DemonstratorActuator/";
 

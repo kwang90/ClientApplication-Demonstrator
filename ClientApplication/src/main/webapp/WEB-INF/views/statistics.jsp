@@ -72,7 +72,7 @@
 			<div class="col-lg-12">
 				<div class="form-group">
 					<select class="form-control" id="form_select_id"
-						onchange="onSensorSelected(this,'$INDEX')">
+						onchange="onParameterSelected(this)">
 					</select>
 				</div>
 			</div>
