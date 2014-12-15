@@ -8,6 +8,8 @@ public class Constant {
 
 	public static final String TASKING_REQUEST_DOCUMENT = "/TaskingRequest.xml";
 
+	public static final String LEAK_DETECTION_SUBSCRIPTION_DOCUMENT = "/leakDetectionSubscription.xml";
+
 	public static final String TASKING_REQUEST_SUBMIT_ELEMENT = "sps:Submit";
 
 	public static final String TASKING_REQUEST_PROCEDURE_ELEMENT = "sps:procedure";

@@ -6,9 +6,9 @@ package com.siemens.demonstrator.client.proxy;
 
 public class RestURIConstants {
 
-	public static final String REGISTRY_SERVICES_LIST = "/service";
+	public static final String REGISTRY_SERVICES_LIST = "registry/service";
 
-	public static final String REGISTRY_PHYSICAL_COMPONENT_LIST_PREFIX = "/process";
+	public static final String REGISTRY_PHYSICAL_COMPONENT_LIST_PREFIX = "registry/process";
 
 	public static final String REGISTRY_PHYSICAL_COMPONENT_LIST_SUFFIX = "/sensors";
 
@@ -26,5 +26,5 @@ public class RestURIConstants {
 
 	public static final String SPS_SUBMIT_TASK_STATUS = "/sps/rest/task";
 
-	public static final String SES_NOTIFY_MESSAGE = "/rest/messages";
+	public static final String SES_SUBSCRIBE = "/52n-ses-1.2.1/rest/subscriptions";
 }

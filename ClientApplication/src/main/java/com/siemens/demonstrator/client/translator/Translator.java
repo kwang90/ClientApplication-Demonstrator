@@ -58,4 +58,21 @@ public class Translator {
 		System.out.println(writer.toString());
 		return writer.toString();
 	}
+
+	public String getLeakDetectionSubscription() throws TransformerException,
+			ParserConfigurationException, SAXException, IOException {
+		InputStream fileIo = Translator.class
+				.getResourceAsStream(Constant.LEAK_DETECTION_SUBSCRIPTION_DOCUMENT);
+		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+		Document doc = dBuilder.parse(fileIo);
+		DOMSource domSource = new DOMSource(doc);
+		StringWriter writer = new StringWriter();
+		StreamResult result = new StreamResult(writer);
+		TransformerFactory tf = TransformerFactory.newInstance();
+		Transformer transformer = tf.newTransformer();
+		transformer.transform(domSource, result);
+		System.out.println(writer.toString());
+		return writer.toString();
+	}
 }

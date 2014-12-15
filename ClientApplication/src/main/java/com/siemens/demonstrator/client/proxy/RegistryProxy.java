@@ -55,7 +55,7 @@ public class RegistryProxy extends ServiceProxy {
 				+ RestURIConstants.REGISTRY_PHYSICAL_COMPONENT_LIST_SUFFIX;
 		String xmlString = this.doGet("");
 		SensorMLParser sensormlParser = new SensorMLParser();
-		return sensormlParser.parsePhysicalComponentListXml(xmlString);
+		return sensormlParser.parsePhysicalComponentList(xmlString);
 	}
 
 	private void parseServicesList(String xmlServiceList) throws JAXBException {
@@ -75,6 +75,6 @@ public class RegistryProxy extends ServiceProxy {
 				+ RestURIConstants.REGISTRY_PHYSICAL_COMPONENT_LIST_SUFFIX;
 		String xmlString = this.doGet("");
 		SensorMLParser sensormlParser = new SensorMLParser();
-		return sensormlParser.parsePhysicalComponentListXml(xmlString);
+		return sensormlParser.parsePhysicalComponentList(xmlString);
 	}
 }

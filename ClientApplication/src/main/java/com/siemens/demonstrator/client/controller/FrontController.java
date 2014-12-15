@@ -1,6 +1,9 @@
 package com.siemens.demonstrator.client.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import javax.xml.bind.JAXBException;
@@ -14,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -98,9 +102,18 @@ public class FrontController {
 
 	@RequestMapping(value = "/notifications", method = RequestMethod.GET)
 	public @ResponseBody String getSESNotifications(
-			@RequestParam(value = "page") int page) {
-		System.out.println("SES Notifications after first:" + page
+			@RequestParam(value = "id") int id) {
+		System.out.println("SES Notifications after first:" + id
 				+ " notifications");
+		// FIXME send all notifications which have ids greater than 0.
+		return null;
+	};
+
+	@RequestMapping(value = "/notifications", method = RequestMethod.POST)
+	public @ResponseBody String receiveSESNotifications(
+			@RequestBody String sesNotification) {
+		// FIXME call SESRest to parse the incoming notification according to
+		// XML file, then save it in a database.
 		return null;
 	};
 
@@ -109,11 +122,10 @@ public class FrontController {
 			@PathVariable(value = "procedure") String procedure) {
 		try {
 			SOSProxy sosProxy = new SOSProxy();
-			// FIXME Generate temporalFilter with range of 5-10 seconds for
-			// example.
-			String temporalFilter = "";
+			String namespaces = "xmlns(om,http://www.opengis.net/om/2.0)";
+			String temporalFilter = "om:phenomenonTime,latest";
 			ObservationCollection observations = sosProxy.getObservation(
-					procedure, temporalFilter);
+					procedure, namespaces, temporalFilter);
 			if (observations != null && observations.getCollection() != null
 					&& observations.getCollection().size() > 0) {
 				OM_Result result = observations.getCollection().get(0)
@@ -146,23 +158,41 @@ public class FrontController {
 			@PathVariable(value = "procedure") String procedure)
 			throws JSONException {
 		try {
+			SimpleDateFormat dateformat = new SimpleDateFormat(
+					"yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+			Date startDate = new Date();
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(startDate);
+			calendar.add(Calendar.MINUTE, -2);
+			Date endDate = calendar.getTime();
+
 			SOSProxy sosProxy = new SOSProxy();
-			ObservationCollection observations = sosProxy
-					.getObservation(procedure);
-			JSONObject mainObj = new JSONObject();
-			JSONArray dataList = new JSONArray();
-			mainObj.put("uom", observations.getCollection().get(0)
-					.getObservation().getResult().getUom());
-			for (RestObservation restObservation : observations.getCollection()) {
-				OM_Observation observation = restObservation.getObservation();
-				JSONObject point = new JSONObject();
-				point.put("time", observation.getPhenomenonTime()
-						.getTimeInstant().getTimePosition().getValue());
-				point.put("value", observation.getResult().getValue());
-				dataList.put(point);
-			}
-			mainObj.put("data", dataList);
-			return mainObj.toString();
+			String namespaces = "xmlns(om,http://www.opengis.net/om/2.0)";
+			String temporalFilter = "om:phenomenonTime,"
+					+ dateformat.format(startDate) + "/"
+					+ dateformat.format(endDate);
+			ObservationCollection observations = sosProxy.getObservation(
+					procedure, namespaces, temporalFilter);
+			if (observations != null && observations.getCollection() != null
+					&& observations.getCollection().size() > 0) {
+				JSONObject mainObj = new JSONObject();
+				JSONArray dataList = new JSONArray();
+				mainObj.put("uom", observations.getCollection().get(0)
+						.getObservation().getResult().getUom());
+				for (RestObservation restObservation : observations
+						.getCollection()) {
+					OM_Observation observation = restObservation
+							.getObservation();
+					JSONObject point = new JSONObject();
+					point.put("time", observation.getPhenomenonTime()
+							.getTimeInstant().getTimePosition().getValue());
+					point.put("value", observation.getResult().getValue());
+					dataList.put(point);
+				}
+				mainObj.put("data", dataList);
+				return mainObj.toString();
+			} else
+				return null;
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

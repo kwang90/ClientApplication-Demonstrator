@@ -4,16 +4,22 @@
  */
 package com.siemens.demonstrator.client.init;
 
+import java.io.IOException;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 import javax.xml.bind.JAXBException;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.xml.sax.SAXException;
 
 import com.siemens.demonstrator.client.proxy.RegistryProxy;
+import com.siemens.demonstrator.client.proxy.SESProxy;
 
 /**
  * This bean is responsible for session initialization, fetching services list
@@ -21,7 +27,7 @@ import com.siemens.demonstrator.client.proxy.RegistryProxy;
 @PropertySource("classpath:client.properties")
 public class ServerStartup {
 	private final static Logger logger = Logger.getLogger(ServerStartup.class);
-	private static final String PROPERTY_NAME_REGISTRY_IP = "192.168.1.1";
+	private static final String PROPERTY_NAME_REGISTRY_IP = "192.168.1.3";
 	private static final String PROPERTY_NAME_REGISTRY_PORT = "8095";
 
 	@Resource
@@ -30,7 +36,8 @@ public class ServerStartup {
 	@PostConstruct
 	private void initiateData() {
 		initializeSession();
-		// fetchServicesList();
+		fetchServicesList();
+		//subscribeToLeakDetectionNotifications();
 	}
 
 	/**
@@ -58,6 +65,29 @@ public class ServerStartup {
 		} catch (JAXBException e) {
 			logger.error("Failed to load services list, Exiting", e);
 			System.exit(0);
+		}
+	}
+
+	/**
+	 * Subscribes to leak detection service notifications
+	 */
+	private void subscribeToLeakDetectionNotifications() {
+		logger.info("PostConstruct: subscribeToLeakDetectionNotifications");
+		SESProxy sesProxy = new SESProxy();
+		try {
+			sesProxy.subscribeForLeakDetection();
+		} catch (TransformerException e) {
+			logger.error(
+					"Failed to subscribe to leak detection service, Exiting", e);
+		} catch (ParserConfigurationException e) {
+			logger.error(
+					"Failed to subscribe to leak detection service, Exiting", e);
+		} catch (SAXException e) {
+			logger.error(
+					"Failed to subscribe to leak detection service, Exiting", e);
+		} catch (IOException e) {
+			logger.error(
+					"Failed to subscribe to leak detection service, Exiting", e);
 		}
 	}
 

@@ -47,13 +47,14 @@ public class SOSProxy extends ServiceProxy {
 	 * @throws TransformerException
 	 */
 	public ObservationCollection getObservation(String procedure,
-			String temporalFilter) throws JAXBException, TransformerException,
-			ParserConfigurationException, SAXException, IOException {
+			String namespaces, String temporalFilter) throws JAXBException,
+			TransformerException, ParserConfigurationException, SAXException,
+			IOException {
 		this.contextPath = RestURIConstants.SOS_GET_OBSERVATION;
 		OMParser omParser = new OMParser();
 		ObservationCollection observations = omParser.parseXmlObservations(this
-				.doGet("?procedures=" + procedure + "&temporalFilter="
-						+ temporalFilter));
+				.doGet("?procedures=" + procedure + "&namespaces=" + namespaces
+						+ "&temporalFilter=" + temporalFilter));
 		return observations;
 	}
 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sesREST:Subscribe xmlns:sesREST="http://www.icewater-project.eu/sesREST/1.0">
+    <wsnt:Subscribe xmlns:wsnt="http://docs.oasis-open.org/wsn/b-2" xmlns:wsa="http://www.w3.org/2005/08/addressing">
+        <wsnt:ConsumerReference>
+            <wsa:Address>http://localhost:8080/client/notifications</wsa:Address>
+        </wsnt:ConsumerReference>
+        <wsnt:Filter>
+            <wsnt:TopicExpression Dialect="http://docs.oasis-open.org/wsn/t-1/TopicExpression/Simple">LeakDetection</wsnt:TopicExpression>
+        </wsnt:Filter>
+    </wsnt:Subscribe>
+</sesREST:Subscribe>
